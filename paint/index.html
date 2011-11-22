@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Super Paint MMORPG</title>
+	<link rel="stylesheet" type="text/css" href="Styles/Main.css" />
+	<script type="text/javascript" src="Scripts/PaintCanvas.js"></script>
+</head>
+<body>
+
+<h1>super paint mmorpg</h1>
+
+<h2>the massively multiplayer online role painting game</h2>
+
+<canvas id="paintCanvas" width="800" height="450">
+	<p>This site requires a web browser with HTML canvas capabilities, which your web browser does not appear to have. Please upgrade to a recent version of a web browser with HTML canvas support, such as <a href="http://www.google.com/chrome/">Chrome</a>, <a href="http://www.mozilla.com/">Firefox</a>, or <a href="http://www.apple.com/safari/">Safari</a>.</p>
+
+	<p>In the meantime, you can see what other people have drawn below.</p>
+
+	<img src="Data/Canvas.png" />
+</canvas>
+
+<div id="usersOnline">
+	Users Online: 0
+</div>
+
+<div id="controls">
+	<div class="selector left">
+		<img src="Images/Brush2.png" alt="2x2 pixels" style="padding: 15px" onclick="selectedBrushSizeChanged(this, 2)" />
+		<img src="Images/Brush4.png" alt="4x4 pixels" class="selected" style="padding: 14px" onclick="selectedBrushSizeChanged(this, 4)" />
+		<img src="Images/Brush8.png" alt="8x8 pixels" style="padding: 12px" onclick="selectedBrushSizeChanged(this, 8)" />
+		<img src="Images/Brush16.png" alt="16x16 pixels" style="padding: 8px" onclick="selectedBrushSizeChanged(this, 16)" />
+		<img src="Images/Brush32.png" alt="32x32 pixels" onclick="selectedBrushSizeChanged(this, 32)" />
+	</div>
+
+	<div class="selector right">
+		<div class="color selected" style="background-color: black" onclick="selectedBrushColorChanged(this, '#000000')"></div>
+		<div class="color" style="background-color: white" onclick="selectedBrushColorChanged(this, '#ffffff')"></div>
+		<div class="color" style="background-color: gray" onclick="selectedBrushColorChanged(this, '#808080')"></div>
+		<div class="color" style="background-color: red" onclick="selectedBrushColorChanged(this, '#ff0000')"></div>
+		<div class="color" style="background-color: orange" onclick="selectedBrushColorChanged(this, '#ffa500')"></div>
+		<div class="color" style="background-color: yellow" onclick="selectedBrushColorChanged(this, '#ffff00')"></div>
+		<div class="color" style="background-color: green" onclick="selectedBrushColorChanged(this, '#008000')"></div>
+		<div class="color" style="background-color: blue" onclick="selectedBrushColorChanged(this, '#0000ff')"></div>
+		<div class="color" style="background-color: purple" onclick="selectedBrushColorChanged(this, '#800080')"></div>
+		<div class="color" style="background-color: pink" onclick="selectedBrushColorChanged(this, '#ffc0cb')"></div>
+	</div>
+</div>
+
+<script type="text/javascript">
+var pc = new PaintCanvas(parseInt(Math.random() * 2147483648), 0, "paintCanvas", "controls", "usersOnline");
+
+function selectedBrushSizeChanged(img, size)
+{
+	pc.setBrushSize(size);
+
+	var container = img.parentNode;
+	var imgs = container.getElementsByTagName("img");
+	for(var i = 0; i < imgs.length; ++i)
+		imgs[i].className = (imgs[i] == img) ? "selected" : "";
+}
+
+function selectedBrushColorChanged(div, color)
+{
+	pc.setBrushColor(color);
+
+	var container = div.parentNode;
+	var divs = container.getElementsByTagName("div");
+	for(var i = 0; i < divs.length; ++i) {
+		if(divs[i].className != "color selected" && divs[i].className != "color")
+			continue;
+
+		divs[i].className = (divs[i] == div) ? "color selected" : "color";
+	}
+}
+</script>
+
+</body>
+</html>

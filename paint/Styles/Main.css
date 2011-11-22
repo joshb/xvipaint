@@ -1,0 +1,141 @@
+body
+{
+	margin: 0;
+	background-color: gray;
+	background: -webkit-linear-gradient(0deg, gray 0%, silver 50%, gray 100%);
+	background: -moz-linear-gradient(0deg, gray 0%, silver 50%, gray 100%);
+	background: -o-linear-gradient(0deg, gray 0%, silver 50%, gray 100%);
+	color: black;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+}
+
+a:link, a:visited, a:active
+{
+	background-color: transparent;
+	color: #0000aa;
+}
+
+a:hover
+{
+	background-color: transparent;
+	color: #5555ff;
+}
+
+h1, h2
+{
+	width: 800px;
+	margin: auto;
+}
+
+h1
+{
+	height: 1.2em;
+	border-bottom: solid 1px black;
+	color: white;
+	background-color: inherit;
+	font-family: Arial Black, Arial, Helvetica, sans-serif;
+	font-size: 28pt;
+	text-shadow: #333333 1px 1px 4px;
+}
+
+h2
+{
+	margin-bottom: 1em;
+	font-size: 12pt;
+	font-weight: normal;
+	font-style: italic;
+	text-align: right;
+	text-shadow: #555555 1px 1px 2px;
+}
+
+#controls
+{
+	display: none;
+	width: 800px;
+	margin: auto;
+}
+
+.selector
+{
+	padding: 8px;
+	border-radius: 8px;
+	background-color: black;
+	color: white;
+}
+
+.selector.left
+{
+	float: left;
+}
+
+.selector.right
+{
+	float: right;
+}
+
+.selector .selected, .selector .color.selected
+{
+	border: solid 2px #8888ff;
+	opacity: 1.0;
+}
+
+.selector .color.selected
+{
+	padding: 2px;
+}
+
+.selector img
+{
+	cursor: pointer;
+	border: solid 2px black;
+	margin: 2px;
+	-webkit-transition: background-color 0.3s;
+	-moz-transition: background-color 0.3s;
+	-o-transition: background-color 0.3s;
+}
+
+.selector img:hover
+{
+	background-color: #8888ff;
+}
+
+.selector .color
+{
+	float: left;
+	width: 30px;
+	height: 30px;
+	padding: 3px;
+	margin: 2px;
+	border: solid 1px white;
+	cursor: pointer;
+	opacity: 0.75;
+	-webkit-transition: opacity 0.3s;
+	-moz-transition: opacity 0.3s;
+	-o-transition: opacity 0.3s;
+}
+
+.selector .color:hover
+{
+	opacity: 1.0;
+}
+
+canvas
+{
+	display: block;
+	position: relative;
+	margin: auto;
+	border-radius: 8px;
+	background-color: white;
+	cursor: crosshair;
+}
+
+#usersOnline
+{
+	width: 800px;
+	margin: auto;
+	padding: 0.5em;
+	text-align: right;
+	font-size: 8pt;
+	font-weight: bold;
+}
