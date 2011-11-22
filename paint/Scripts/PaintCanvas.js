@@ -57,7 +57,7 @@ function PaintCanvas(userId, updateId, canvasId, controlsId, usersOnlineId)
 			setTimeout(openConnection, 500);
 		}
 		var d = new Date();
-		image.src = "Data/Canvas.png?t=" + d.getTime();
+		image.src = "Canvas.png?t=" + d.getTime();
 	}
 
 	function getMouseX(e)

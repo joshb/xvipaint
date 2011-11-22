@@ -30,6 +30,8 @@
 #include "Exception.h"
 #include "Util.h"
 
+const char *CANVAS_PATH = "Canvas.png";
+
 using namespace std;
 
 PaintResponder::PaintResponder()
@@ -39,11 +41,11 @@ PaintResponder::PaintResponder()
 
 	m_painter = new Painter();
 	try {
-		m_image = Image::load("Data/Canvas.png");
+		m_image = Image::load(CANVAS_PATH);
 	} catch(Exception ex) {
 		// create a new image if one doesn't already exist
 		m_image = new Image(800, 450, 3);
-		m_image->save("Data/Canvas.png");
+		m_image->save(CANVAS_PATH);
 	}
 	m_lastSaveTime = getMilliseconds();
 }
@@ -51,7 +53,7 @@ PaintResponder::PaintResponder()
 PaintResponder::~PaintResponder()
 {
 	delete m_painter;
-	m_image->save("Data/Canvas.png");
+	m_image->save(CANVAS_PATH);
 	delete m_image;
 }
 
@@ -85,7 +87,7 @@ PaintResponder::updateImage()
 	// if the image was last updated more than 15 seconds ago, update it
 	long time = getMilliseconds();
 	if((time - m_lastSaveTime) > 15000) {
-		m_image->save("Data/Canvas.png");
+		m_image->save(CANVAS_PATH);
 		m_lastSaveTime = time;
 
 		// delete all updates more than 10 seconds old
