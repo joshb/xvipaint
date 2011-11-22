@@ -1,0 +1,3 @@
+[submodule "xviweb"]
+	path = xviweb
+	url = git://github.com/joshb/xviweb.git
