@@ -27,6 +27,7 @@
 #include <xviweb/String.h>
 #include "PaintContext.h"
 #include "PaintResponder.h"
+#include "Util.h"
 
 using namespace std;
 
@@ -38,6 +39,7 @@ PaintContext::PaintContext(const HttpRequest *request,
 
 	m_userId = String::toInt(request->getQueryStringValue("u"));
 	m_userLastUpdateId = String::toInt(request->getQueryStringValue("i"));
+	m_lastKeepaliveTime = getMilliseconds();
 
 	m_lastUserCount = 0;
 	m_responder->incrementUserCount();
@@ -69,8 +71,18 @@ PaintContext::continueResponse(const HttpRequest * /*request*/,
 		updates = string("uo:") + String::fromInt(userCount) + '\n' + updates;
 	}
 
-	if(updates.length() != 0)
+	if(updates.length() != 0) {
+		m_lastKeepaliveTime = getMilliseconds();
 		response->sendString(updates);
+	} else {
+		// send a keepalive message if no data
+		// has been sent for a while
+		long time = getMilliseconds();
+		if(time - m_lastKeepaliveTime >= 15000) {
+			m_lastKeepaliveTime = time;
+			response->sendString("hi:\n");
+		}
+	}
 
 	m_userLastUpdateId = m_responder->getUpdateId();
 	return this;

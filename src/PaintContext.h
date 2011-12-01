@@ -36,6 +36,7 @@ class PaintContext : public ResponderContext
 		PaintResponder *m_responder;
 		int m_userId;
 		int m_userLastUpdateId;
+		long m_lastKeepaliveTime;
 		int m_lastUserCount;
 
 	public:
